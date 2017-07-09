@@ -5,8 +5,13 @@ var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var session = require('express-session');
-
+var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
+var sotrmpath = require('express-stormpath');
+var bodyParser = require('body-parser');
 var app = express();
+var mongoUrl = 'mongodb://elisal:pdnlxx021@ds151662.mlab.com:51662/build-a-voting-app';
+
 require('dotenv').load();
 require('./app/config/passport')(passport);
 
