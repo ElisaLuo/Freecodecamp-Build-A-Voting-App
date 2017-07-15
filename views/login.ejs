@@ -1,0 +1,20 @@
+<%include header.ejs %>
+<%include nav.ejs %>
+<div id = "home" class = "container">
+    <h1 class="logsign">Login</h1>
+    <form id="login" method="POST" action="">
+        <div class="inputs">
+            <div class = "login" id="in-box">
+                <input required type="text" placeholder="Username" name="username" autofocus />
+                <input required type="password" placeholder="Password" name="password" />
+            </div>
+            <div class = "login">
+                <input type="submit" id="submit" value="Login" class="btn btn-primary">
+            </div>
+            <div class="error">
+                <% if(error){ %>
+                    <p id="error-message"><%=errorMessage %> </p>
+                <%}%>  
+            </div>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+  <body>
+    <header>
+        <nav class="navbar navbar-dark navbar-full navbar-fixed-top" style="background-color: #0099ff;">
+          <div class="container">
+            <% if(authenticated === false){ %>
+              <a  id="title" class="navbar-brand" href="/" style="color: #dddddd">FFC Voting App</a>
+            <ul class="nav navbar-nav pull-sm-right" style = "float: right;">
+              <li class="nav-item active"><a class="nav-link" href="/polls">Polls</a></li>
+              <li class="nav-item"><a class="nav-link" href="/login">Login In</a></li>
+              <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
+            </ul>
+          <% }else{ %>
+              <a  id="title" class="navbar-brand" href="/" style="color: #dddddd">FFC Voting App</a>
+            <ul class="nav navbar-nav pull-sm-right" style = "float: right;">
+              <li class="nav-item active"><a class="nav-link" href="/polls">Polls</a></li>
+              <li class="nav-item"><a class="nav-link" href="/mypolls">My Polls</a></li>
+              <li class="nav-item"><a class="nav-link" href="/">Logout</a></li>
+            </ul>
+          <%}%>
+          </div>
+        </nav>
+      </header>
+  </body>
