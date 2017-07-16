@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const User = require("../models/user.model")
+const User = require('../models/user.model');
+
 
 router.get('/', function (req, res) {
     if (req.session && req.session.user) {
@@ -12,6 +13,9 @@ router.get('/', function (req, res) {
         res.locals.authenticated = false;
         res.render('index');
     }
+
 });
+
+
 
 module.exports = router;

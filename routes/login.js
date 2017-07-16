@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user.model');
-const http = require("http");
+const http = require('http');
 
 router.get('/', function (req, res) {
     if (req.session && req.session.user) {
@@ -13,9 +13,6 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     User.findOne({ username: req.body.username }, function (err, user) {
-        if(err){
-            console.log("error in logging in");
-        }
         if (!user) {
             res.render('login', {
                 error: true,
@@ -24,10 +21,8 @@ router.post('/', function (req, res) {
             });
         } else {
             if (req.body.username === user.username && req.body.password === user.password) {
-                res.render('index', {
-                    error: false,
-                    authenticated: true
-                });
+                req.session.user = user; //Set-cookie in response header. (See server.js line 27)
+                res.redirect('/');
             } else {
                 res.render('login', {
                     error: true,

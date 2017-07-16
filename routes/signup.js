@@ -23,6 +23,7 @@ router.post('/', function (req, res) {
                 if(err){
                     console.log("creation of new user failed");
                 }
+                req.session.user = user; //Sets user up in local cookie
                 res.redirect('/');
             });
         } else {
