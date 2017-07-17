@@ -38,7 +38,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Sets up links for different sites
-app.use(express.static(__dirname + '/public'));
 app.use("/", index);
 app.use("/createpoll", createPoll);
 app.use("/login", login);

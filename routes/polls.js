@@ -3,7 +3,7 @@ const router = express.Router();
 const Poll = require('../models/polls.model');
 
 router.get('/', function (req, res) {
-    if (req.vote && req.vote.user) {
+    if (req.session && req.session.user) {
         Poll.find({}, function (err, polls) {
             res.render('polls', {
                 authenticated: true,
@@ -27,21 +27,15 @@ router.get('/:pollId', function (req, res) {
                 res.sendStatus(404);
                 return;
             }
-            if (poll.createdBy === req.session.user.username) {
-                res.render('eachpoll', {
-                    thisPoll: poll,
-                    authenticated: true,
-                    isUserPoll: true
-                });
-            } else if (poll.createdBy === req.session.user) {
-                res.render('eachpoll', {
+            if (poll.createdBy === req.session.user.username || poll.createdBy === req.session.user) {
+                res.render('eachPoll', {
                     thisPoll: poll,
                     authenticated: true,
                     isUserPoll: true
                 });
             }
             else {
-                res.render('eachpoll', {
+                res.render('eachPoll', {
                     thisPoll: poll,
                     authenticated: true,
                     isUserPoll: false
@@ -54,8 +48,7 @@ router.get('/:pollId', function (req, res) {
                 res.sendStatus(404);
                 return;
             }
-            // res.json({ pollTitle: poll.title });
-            res.render('eachpoll', {
+            res.render('eachPoll', {
                 thisPoll: poll,
                 authenticated: false,
                 isUserPoll: false

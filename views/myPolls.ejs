@@ -1,22 +1,20 @@
 <%include header.ejs %>
 <%include nav.ejs %>
 <div id = "home" class = "container">
-    <h1>My Polls</h1>
     <% if(nopolls){ %>
         <p><%=nopolls%></p>
     <%}else{%>
-        <p>These are all the polls you have created, you can edit or share them.</p>
     <%}%>
-                
-    <% for(let i=0;i< myPolls.length;i++){ %>
-        <div class="new-poll">
-            <h1>Vote</h1>
+    <h1 class="polls-head">My Polls</h1>
+    <% for(var i=0;i< myPolls.length;i++){ %>
             <div class="title">
-                <%= myPolls[i].title %>
+                <div class="poll-name">
+                   <%= myPolls[i].title %> 
+                </div>
+                
                     <div class="poll-link">
                         <a href="polls/<%= myPolls[i]._id %>">VIEW POLL</a>
                     </div>  
             </div>
-        </div>
     <%}%>
 </div>

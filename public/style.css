@@ -25,12 +25,12 @@ h1{
 }
 .inputs{
     margin: 50px auto 7px auto;
-    color: #8f8f8f;
+    background-color: #8f8f8f;
     display: block;
     background: #fff;
     width: 400px;
-    height: 260px;
     border-radius: 3px;
+    padding: 30px;
 }
 .inputs input{
     width: 300px;
@@ -39,8 +39,9 @@ h1{
 .inputs #submit{
     font-size: 18px;
 }
-#in-box{
-    padding-top: 45px;
+.inputs #add-button{
+    margin-top: 20px;
+    font-size: 18px;
 }
 .error{
     color: red;
@@ -58,6 +59,47 @@ h1{
 .logsign{
     margin-top: -3%;
 }
-#polls-head{
+.polls-head{
     margin-top: -120px;
+}
+.title{
+    font-size: 20px;
+    font-family: "Source Sans Pro";
+    width: 375px;
+    background-color: white;
+    border-radius: 10px;
+    min-height: 50px;
+    display: inline-block;
+    margin-top: 10px;
+}
+.poll-name{
+    font-size: 30px;
+}
+.poll-link{
+    font-size: 20px;
+}
+.view{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+#createdBy{
+    margin-top: -15px;
+}
+.mypoll-name{
+    font-size: 50px;
+    color: #dddddd;
+    font-family: "Zilla Slab";
+    margin-top: -10%;
+}
+#options{
+    color: #dddddd;
+    font-size: 20px;
+    display: inline-block;
+}
+#other{
+    display: block;
+}
+#indivPoll{
+    margin-top: -10%;
 }
