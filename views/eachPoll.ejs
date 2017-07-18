@@ -9,24 +9,95 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href = "../style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro|Zilla+Slab" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
   </head>
 <%include nav.ejs %>
 <div id = "home" class="container">
     <h1 id="indivPoll"><%=thisPoll.title%></h1>
     
-    <canvas style="display: block;"></canvas>
+    <canvas id="myChart" style="display: block;"></canvas>
     
-    <% for(var i = 0; i < thisPoll.choices.length; i++){ %>
-        <p id="options"><%=thisPoll.choices[i].title %></p>
+    <% for(var i=0;i<thisPoll.choices.length;i++){ %>
+        <div class="choice-container">
+            <button class = "btn btn-default" id="<%=thisPoll.choices[i].title%>"><%=thisPoll.choices[i].title %></button>
+        </div>
     <%}%>
     <div id="other">
         <% if(authenticated){ %>
-        <input required maxlength="40" placeholder="Other" id="custom" type="text" name="custom" />
-            <button class="btn btn-primary">Vote</button>
             <% if(isUserPoll){ %>
                 <button class="btn btn-danger">Delete</button>
             <%}%>
         <%}%>
     </div>
+     <script>
+        var choicesArray = [];
+        var choicesCount = [];
+        var colorsArray = addColor();
+        var data = <%- JSON.stringify(thisPoll.choices) %>; 
+        var id =  <%- JSON.stringify(thisPoll._id) %>          
+            
+        $('.choice-container button').click(function(){
+            $.ajax({
+                url: '/polls/' + id,
+                type: 'PUT',
+                data: "choice="+$(this).attr('id'),
+                success: function(result) {
+                    if(result.updated){
+                        location.reload();
+                    }else{
+                        alert(result.message)
+                    }
+                }
+            });
+        });
+        
+        $('#delete-button').click(function(){
+            if(confirm('Are you sure you want to delete this poll')){
+            $.ajax({
+                url: '/polls/' + id,
+                type: 'DELETE',
+                success: function(result){
+                    alert(result.message);
+                    window.location.href="/polls";  
+                }
+            });
+        }
+    });
     
+        function addColor(){
+        var colors = ["red", "orange", "blue", "green"];
+        function rgb(){
+            return Math.floor((Math.random() * 10)+1);
+        }                        
+            return colors;
+        }
+                          
+        data.map(function(choice){choicesArray.push(choice.title)});
+        data.map(function(number){choicesCount.push(number.count)});
+                          
+        var canvas = document.getElementById("myChart");
+                
+        var myChart = new Chart(canvas, {
+                        type: 'pie',
+                        data: {
+                            labels: choicesArray,
+                            datasets: [{
+                                data:choicesCount,
+                                backgroundColor: colorsArray,
+                                borderWidth: 0.5
+                            }]
+                        },
+                        options:{
+                            maintainAspectRatio: true,
+                            responsive:true,
+                            layout:{
+                                padding:{
+                                    left:10,
+                                    top:200
+                                }
+                            }
+                        }
+                    });
+                                               
+        </script>
 </div>

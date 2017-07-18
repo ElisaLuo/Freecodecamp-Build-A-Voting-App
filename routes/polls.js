@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Poll = require('../models/polls.model');
+const checkIp = require('../checkIp');
 
 router.get('/', function (req, res) {
     if (req.session && req.session.user) {
@@ -56,5 +57,59 @@ router.get('/:pollId', function (req, res) {
         });
     }
 });
+
+router.delete('/:pollId', function (req, res) {
+    Poll.findByIdAndRemove(req.params.pollId, function (err, poll) {
+        res.json({ message: 'Poll Deleted' });
+    });
+});
+
+router.put('/:pollId', function (req, res) {
+    checkIp(req.params.pollId, req.headers['x-forwarded-for'])
+        .then(function (originalIp) {
+            if (originalIp) {
+                submitVote(req.body.choice, res, req.headers['x-forwarded-for']);
+            } else {
+                res.json({ message: 'This ip has already voted' });
+            }
+        })
+        .catch(function (err) { console.log(err) });
+});
+
+router.post('/:pollId', function (req, res) {
+    if (req.session && req.session.user) {
+        checkIp(req.params.pollId, req.headers['x-forwarded-for'])
+            .then(function (originalIp) {
+                if (originalIp) {
+                    Poll.findByIdAndUpdate(
+                        req.params.pollId,
+                        { $push: { choices: { title: req.body.custom } } },
+                        { new: true },
+                        function (err, poll) {
+                            if (err) throw err;
+                            submitVote(req.body.custom, res, req.headers['x-forwarded-for']);
+                        });
+
+                } else {
+                    res.json({ message: 'You have already voted!' });
+                }
+            });
+    } else {
+        res.status(401).send('You must be a member to view this page.');
+    }
+});
+
+function submitVote(field, res, ip) {
+
+    Poll.findOneAndUpdate(
+        { choices: { $elemMatch: { title: field } } },
+        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp': ip } },
+        { new: true },
+        function (err, poll) {
+            if (err) throw err;
+            res.json({ updated: poll });
+        }
+    );
+}
 
 module.exports = router;
