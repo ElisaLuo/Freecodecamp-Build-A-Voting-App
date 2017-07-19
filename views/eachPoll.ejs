@@ -15,17 +15,17 @@
 <div id = "home" class="container">
     <h1 id="indivPoll"><%=thisPoll.title%></h1>
     
-    <canvas id="myChart" style="display: block;"></canvas>
+    <canvas id="myChart" style="display: block; color: white;" width="500"></canvas>
     
     <% for(var i=0;i<thisPoll.choices.length;i++){ %>
         <div class="choice-container">
-            <button class = "btn btn-default" id="<%=thisPoll.choices[i].title%>"><%=thisPoll.choices[i].title %></button>
+            <button class = "btn poll-choice" id="<%=thisPoll.choices[i].title%>"><%=thisPoll.choices[i].title %></button>
         </div>
     <%}%>
     <div id="other">
         <% if(authenticated){ %>
             <% if(isUserPoll){ %>
-                <button class="btn btn-danger">Delete</button>
+                <button class="btn btn-danger" id="delete-button">Delete</button>
             <%}%>
         <%}%>
     </div>
@@ -65,7 +65,7 @@
     });
     
         function addColor(){
-        var colors = ["red", "orange", "blue", "green"];
+        var colors = ["#3366CC", "#DC3912", "#FF9900", "#109618", "#99099", "#3B3EAC", "#0099C6", "#DD4477", "#66AA00"];
         function rgb(){
             return Math.floor((Math.random() * 10)+1);
         }                        
@@ -94,6 +94,12 @@
                                 padding:{
                                     left:10,
                                     top:200
+                                }
+                            },
+                            legend:{
+                                display: true,
+                                labels:{
+                                    fontSize: 20
                                 }
                             }
                         }

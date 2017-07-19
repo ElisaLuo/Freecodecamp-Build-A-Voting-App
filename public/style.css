@@ -1,40 +1,40 @@
 body{
-    background-image: url("http://wallpapercave.com/wp/7jlmU6w.jpg");
+    background-color: #4ABDAC;
+}
+/*Navbar settings*/
+.navbar-default{
+    background-color: #FC4A1A;
 }
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
     font-family: "Lato";
 }
 li a {
     display: block;
     padding: 8px;
-    color: #dddddd;
+    color: white;
     font-size: 16px;
 }
+/*Settings for titles*/
 #home{
     margin-top: 15%;
     text-align: center;
 }
 h1{
-    color: #dddddd;
-    font-family: zilla slab;
+    color: white;
+    font-family: "Zilla Slab";
     font-size: 50px;
 }
+/*Settings for inputs including login, signup, and create poll*/
 .inputs{
     margin: 50px auto 7px auto;
-    background-color: #8f8f8f;
     display: block;
-    background: #fff;
     width: 400px;
-    border-radius: 3px;
-    padding: 30px;
 }
 .inputs input{
     width: 300px;
     height: 50px;
+    color: white;
+    font-size: 20px;
 }
 .inputs #submit{
     font-size: 18px;
@@ -46,9 +46,12 @@ h1{
 .error{
     color: red;
     margin-top: 10px;
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .btn-container{
-    color: #dddddd;
+    color: white;
     font-size: 20px;
     text-align: center;
     margin-top: 5%;
@@ -63,17 +66,19 @@ h1{
     margin-top: -120px;
 }
 .title{
-    font-size: 20px;
-    font-family: "Source Sans Pro";
-    width: 375px;
-    background-color: white;
-    border-radius: 10px;
+    font-family: "Lato";
+    width: 365px;
+    height: 163.4px;
+    background-color: #dfdce3;
     min-height: 50px;
     display: inline-block;
     margin-top: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-align: center;
 }
 .poll-name{
-    font-size: 30px;
+    font-size: 2em;
 }
 .poll-link{
     font-size: 20px;
@@ -83,12 +88,9 @@ h1{
     margin-top: 10px;
     margin-bottom: 10px;
 }
-#createdBy{
-    margin-top: -15px;
-}
 .mypoll-name{
     font-size: 50px;
-    color: #dddddd;
+    color: white;
     font-family: "Zilla Slab";
     margin-top: -10%;
 }
@@ -97,4 +99,28 @@ h1{
 }
 #indivPoll{
     margin-top: -10%;
+}
+.choice-container{
+    display: inline-block;
+    margin-bottom: 50px;
+}
+.btn-default{
+    background-color: #F7B733;
+    color: white;
+}
+.login input{
+    background: rgba(76, 175, 80, 0.0);
+    border: 5px solid white;
+    color: white;
+}
+.button{
+    background-color: #F7B733; 
+    color: white; 
+    border: none;
+}
+.createdBy{
+    font-size: 0.75em;
+}
+.poll-choice{
+    margin-top: 50px;
 }

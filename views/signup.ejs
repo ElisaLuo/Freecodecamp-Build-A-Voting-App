@@ -8,13 +8,10 @@
                 <input required type="text" placeholder="Username" name="username" autofocus />
                 <input required type="password" placeholder="Password" name="password" />
             </div>
-                
-            <div class = "login">
-                <input type="submit" id="submit" value="Signup" class="btn btn-primary">
-            </div>
+                <input type="submit" id="submit" value="Signup" class="button">
             <div class="error">
                 <% if(error){ %>
-                    <p id="error-message"><%=errorMessage %> </p>
+                    <p class="error-message"><%=errorMessage %></p>
                 <%}%>  
             </div>
         </div>

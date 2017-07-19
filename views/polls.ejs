@@ -10,10 +10,11 @@
                 </div>
                     <div class="poll-link">
                         <div class= "poll-view">
-                            <a href="polls/<%= allPolls[i]._id %>" class="btn btn-primary view">View Poll</a>
+                            <a href="polls/<%= allPolls[i]._id %>" class="btn button view">View Poll</a>
                         </div>
-                        <p>Created by:</p>
-                        <p id="createdBy"><%=allPolls[i].createdBy %></p>
+                        <div class="createdBy">
+                            <p>Created by: <%=allPolls[i].createdBy %></p>
+                        </div>
                     </div>
             </div>
         <%}%>

@@ -26,10 +26,11 @@ router.post('/', function (req, res) {
                 req.session.user = user; //Sets user up in local cookie
                 res.redirect('/');
             });
-        } else {
+        }
+        else {
             res.render('signup', {
                 error: true,
-                errorMessage: 'This username already exists',
+                errorMessage: 'Username already exists or password is shorter than 6 characters',
                 authenticated: false
             });
         }
