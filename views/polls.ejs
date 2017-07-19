@@ -5,8 +5,8 @@
     <div class="main-aligner">
         
         <% for(var i = 0; i < allPolls.length; i++){ %>
-            <div class="title" id="dynamicDiv">
-                <div class="poll-name" id="dynamicSpan">
+            <div class="title">
+                <div class="poll-name">
                     <%= allPolls[i].title %>
                 </div>
                     <div class="poll-link">
@@ -21,15 +21,3 @@
         <%}%>
     </div>
 </div>
-<script>
-   function shrink()
-    {
-        var textSpan = document.getElementById("dynamicSpan");
-        var textDiv = document.getElementById("dynamicDiv");
-        textSpan.style.fontSize = 64;
-        while(textSpan.offsetHeight > textDiv.offsetHeight)
-        {
-            textSpan.style.fontSize = parseInt(textSpan.style.fontSize) - 1;
-        }
-    }
-</script>

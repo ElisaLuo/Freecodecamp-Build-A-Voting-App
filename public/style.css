@@ -69,7 +69,7 @@ h1{
 .title{
     font-family: "Lato";
     width: 365px;
-    height: auto;
+    height: 140px;
     min-height: 150%;
     background-color: #dfdce3;
     display: inline-block;
@@ -77,11 +77,14 @@ h1{
     margin-right: 5px;
     margin-left: 5px;
     text-align: center;
+    vertical-align: text-top;
 }
 .poll-name{
-    font-size: 50px;
- 
-    
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    line-height: 1em; /* a */
+    max-height: 2em;
+    font-size: 25px;
 }
 .poll-link{
     font-size: 20px;
@@ -126,4 +129,7 @@ h1{
 }
 .poll-choice{
     margin-top: 50px;
+}
+#mine{
+    margin-top: 20px;
 }
