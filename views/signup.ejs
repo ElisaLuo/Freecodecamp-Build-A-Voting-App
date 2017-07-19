@@ -5,13 +5,13 @@
     <form id="signup" method="POST" action="">
         <div class="inputs">
             <div class = "login">
-                <input required type="text" placeholder="Username" name="username" autofocus />
-                <input required type="password" placeholder="Password" name="password" />
+                <input required type="text" placeholder="Username" name="username" autofocus minlength="3"/>
+                <input required type="password" placeholder="Password" name="password" minlength="6" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="Your password has to consist of atleast one uppercase and one numerical character with a minimum length of 6 characters"/>
             </div>
                 <input type="submit" id="submit" value="Signup" class="button">
             <div class="error">
                 <% if(error){ %>
-                    <p class="error-message"><%=errorMessage %></p>
+                    <p class="error-message"><b><%=errorMessage %></b></p>
                 <%}%>  
             </div>
         </div>

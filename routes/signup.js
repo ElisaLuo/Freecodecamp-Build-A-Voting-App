@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 router.post('/', function (req, res) {
     User.findOne({ username: req.body.username }, function (err, user) {
         if(err){
-            console.log("error in creating user");
+            console.log(err);
         }
         if (!user) {
             const newMember = new User({
@@ -21,16 +21,16 @@ router.post('/', function (req, res) {
                 password: req.body.password
             }).save(function (err, user) {
                 if(err){
-                    console.log("creation of new user failed");
+                    console.log(err);
                 }
                 req.session.user = user; //Sets user up in local cookie
                 res.redirect('/');
             });
         }
-        else {
+        else if(user) {
             res.render('signup', {
                 error: true,
-                errorMessage: 'Username already exists or password is shorter than 6 characters',
+                errorMessage: 'Username already exists',
                 authenticated: false
             });
         }

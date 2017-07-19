@@ -35,6 +35,7 @@ h1{
     height: 50px;
     color: white;
     font-size: 20px;
+    margin-bottom: 2px;
 }
 .inputs #submit{
     font-size: 18px;
@@ -68,9 +69,9 @@ h1{
 .title{
     font-family: "Lato";
     width: 365px;
-    height: 163.4px;
+    height: auto;
+    min-height: 150%;
     background-color: #dfdce3;
-    min-height: 50px;
     display: inline-block;
     margin-top: 10px;
     margin-right: 5px;
@@ -78,7 +79,9 @@ h1{
     text-align: center;
 }
 .poll-name{
-    font-size: 2em;
+    font-size: 50px;
+ 
+    
 }
 .poll-link{
     font-size: 20px;
