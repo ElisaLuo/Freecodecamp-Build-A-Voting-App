@@ -1,35 +1,43 @@
 {
+  "name": "vote-crew",
   "version": "1.0.0",
-  "name": "Vote Crew",
-  "description": "Create your own polls, and vote on others. ",
+  "description": "An app that allows users to vote polls created by signed up user",
   "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chart.js": "^2.6.0",
+    "client-sessions": "^0.8.0",
+    "express": "^4.15.3",
+    "cookie-parser": "^1.4.3",
+    "express-session": "^1.15.3",
+    "fs": "^0.0.1-security",
+    "http": "^0.0.0",
+    "mongodb": "^2.2.30",
+    "mongoose": "^4.8.2",
+    "request": "^2.81.0",
+    "ejs": "^2.5.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ElisaLuo/Freecodecamp-Build-A-Voting-App"
+    "url": "git+https://github.com/ElisaLuo/Freecodecamp-Build-A-Voting-App.git"
   },
   "keywords": [
-    "MongoDB",
     "Mongoose",
-    "full stack",
-    "Express",
     "Node",
-    "javascript",
-    "boilerplate"
+    "Ejs",
+    "Javascript",
+    "Express",
+    "Chartjs"
   ],
-  "scripts": {
-  "start": "node server.js"
+  "author": "ElisaLuo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElisaLuo/Freecodecamp-Build-A-Voting-App/issues"
   },
-  "author": "Elisa Luo",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.15.3",
-    "mongoose": "^4.8.2",
-    "ejs": "^2.5.6",
-    "fs": "^0.0.1",
-    "http": "^0.0.0",
-    "node": "^4.6.1"
-  },
-  "engines": {
-    "node": "4.6.1"
-  }
+  "homepage": "https://github.com/ElisaLuo/Freecodecamp-Build-A-Voting-App#readme"
 }
