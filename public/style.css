@@ -1,5 +1,10 @@
 body{
-    background-color: #4ABDAC;
+    background-image: 
+    linear-gradient(
+      rgba(74,189,172, 0.6), 
+      rgba(74,189,172, 0.6)
+    ),
+    url(http://wallsdesk.com/wp-content/uploads/2016/08/White-Abstract-Pictures.png);
 }
 /*Navbar settings*/
 .navbar-default{
@@ -69,7 +74,7 @@ h1{
 .title{
     font-family: "Lato";
     width: 365px;
-    height: 140px;
+    height: 150px;
     min-height: 150%;
     background-color: #dfdce3;
     display: inline-block;
@@ -80,19 +85,24 @@ h1{
     vertical-align: text-top;
 }
 .poll-name{
+    padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis; 
-    line-height: 1em; /* a */
-    max-height: 2em;
-    font-size: 25px;
+    line-height: 1.25em; /* a */
+    max-height: 2.5em;
+    height: 2.5em;
+    font-size: 24px;
+    font-family: "open sans condensed";
 }
 .poll-link{
     font-size: 20px;
+    margin-top: 5px;
 }
 .view{
     font-size: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+    vertical-align: text-top;
 }
 .mypoll-name{
     font-size: 50px;

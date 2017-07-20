@@ -6,12 +6,12 @@
         
         <% for(var i = 0; i < allPolls.length; i++){ %>
             <div class="title">
-                <div class="poll-name">
+                <div class="poll-name" style="text-transform: uppercase;">
                     <%= allPolls[i].title %>
                 </div>
                     <div class="poll-link">
                         <div class= "poll-view">
-                            <a href="polls/<%= allPolls[i]._id %>" class="btn button view">View Poll</a>
+                            <a href="polls/<%= allPolls[i]._id %>" class="btn button view"><span class="glyphicon glyphicon-thumbs-up"></span> Vote</a>
                         </div>
                         <div class="createdBy">
                             <p>Created by: <%=allPolls[i].createdBy %></p>
