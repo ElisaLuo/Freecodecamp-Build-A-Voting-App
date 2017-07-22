@@ -101,11 +101,10 @@ router.post('/:pollId', function (req, res) {
     }
 });
 
-var url = window.location.href;
 function submitVote(field, res, ip) {
     Poll.findOneAndUpdate(
         { choices: { $elemMatch: { title: field } } },
-        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp': url + ip }},//votedIp is equals to field + ip because the ip has to be unique to the poll
+        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp': field + ip }},//votedIp is equals to field + ip because the ip has to be unique to the poll
         { new: true },
         function (err, poll) {
             if (err) throw err;
