@@ -13,7 +13,10 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
     User.findOne({ username: req.body.username }, function (err, user) {
-        if (!user) {
+        if(err){
+            console.log(err);
+        }
+        else if (!user) {
             res.render('login', {
                 error: true,
                 authenticated: false,

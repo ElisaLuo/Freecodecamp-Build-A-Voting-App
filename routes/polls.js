@@ -21,6 +21,7 @@ router.get('/', function (req, res) {
     }
 });
 
+//Gets poll, checks if user is logged in and if user is the creator
 router.get('/:pollId', function (req, res) {
     if (req.session && req.session.user) {
         Poll.findById(req.params.pollId, function (err, poll) {
@@ -64,6 +65,7 @@ router.delete('/:pollId', function (req, res) {
     });
 });
 
+//Checks if this user ip has voted
 router.put('/:pollId', function (req, res) {
     checkIp(req.params.pollId, req.headers['x-forwarded-for'])
         .then(function (originalIp) {
@@ -103,13 +105,13 @@ function submitVote(field, res, ip) {
 
     Poll.findOneAndUpdate(
         { choices: { $elemMatch: { title: field } } },
-        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp': ip } },
+        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp': field + ip }},//votedIp is equals to field + ip because the ip has to be unique to the poll
         { new: true },
         function (err, poll) {
             if (err) throw err;
             res.json({ updated: poll });
         }
-    );
+    )
 }
 
 module.exports = router;

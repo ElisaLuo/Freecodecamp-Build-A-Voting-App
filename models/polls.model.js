@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+// Sets user schema
 const pollSchema = new Schema({
     title: { type: String, unique: true, required: true },
     choices: [
@@ -8,7 +10,8 @@ const pollSchema = new Schema({
             count: { type: Number, default: 0 }
         }
     ],
-    votedIp: [{ type: String, unique: true }],
+    //votedIp should not be unique, since if a voter votes for two polls, an error would occur
+    votedIp: [{ type: String }],
     createdAt: {type:Date, default:Date.now()},
     createdBy: String
 });
