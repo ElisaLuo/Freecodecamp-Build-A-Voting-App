@@ -11,7 +11,7 @@ const pollSchema = new Schema({
         }
     ],
     //votedIp should not be unique, since if a voter votes for two polls, an error would occur
-    votedIp: [{ type: String }],
+    votedIp: [ { type: String, unique: false }],
     createdAt: {type:Date, default:Date.now()},
     createdBy: String
 });

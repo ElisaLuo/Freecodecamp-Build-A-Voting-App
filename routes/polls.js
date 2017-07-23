@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Poll = require('../models/polls.model');
 const checkIp = require('../checkIp');
-
+var url;
 router.get('/', function (req, res) {
     if (req.session && req.session.user) {
         Poll.find({}, function (err, polls) {
@@ -23,6 +23,7 @@ router.get('/', function (req, res) {
 
 //Gets poll, checks if user is logged in and if user is the creator
 router.get('/:pollId', function (req, res) {
+    url = req.params.pollId;
     if (req.session && req.session.user) {
         Poll.findById(req.params.pollId, function (err, poll) {
             if (!poll) {
@@ -67,7 +68,7 @@ router.delete('/:pollId', function (req, res) {
 
 //Checks if this user ip has voted
 router.put('/:pollId', function (req, res) {
-    checkIp(req.params.pollId, req.headers['x-forwarded-for'])
+    checkIp(req.params.pollId, url + req.headers['x-forwarded-for'])
         .then(function (originalIp) {
             if (originalIp) {
                 submitVote(req.body.choice, res, req.headers['x-forwarded-for']);
@@ -80,7 +81,7 @@ router.put('/:pollId', function (req, res) {
 
 router.post('/:pollId', function (req, res) {
     if (req.session && req.session.user) {
-        checkIp(req.params.pollId, req.headers['x-forwarded-for'])
+        checkIp(req.params.pollId, url + req.headers['x-forwarded-for'])
             .then(function (originalIp) {
                 if (originalIp) {
                     Poll.findByIdAndUpdate(
@@ -104,7 +105,7 @@ router.post('/:pollId', function (req, res) {
 function submitVote(field, res, ip) {
     Poll.findOneAndUpdate(
         { choices: { $elemMatch: { title: field } } },
-        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp': field + ip }},//votedIp is equals to field + ip because the ip has to be unique to the poll
+        { $inc: { 'choices.$.count': 1 }, $addToSet: { 'votedIp':  url + ip }},//votedIp is equals to url + ip because the ip has to be unique to the poll (so it's the pollIp + the user ip)
         { new: true },
         function (err, poll) {
             if (err) throw err;

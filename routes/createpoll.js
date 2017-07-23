@@ -22,6 +22,7 @@ router.post('/', function (req, res) {
     const newPoll = new Poll({
         title: req.body.title,
         choices: choicesArr,
+        votedIp: req.body.title + req.headers['x-forwarded-for'],
         createdBy: req.session.user.username || req.session.user
     }).save(function (err, poll) {
         if (err) throw err;
