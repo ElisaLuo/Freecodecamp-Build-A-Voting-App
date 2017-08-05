@@ -15,7 +15,7 @@ const logout = require('./routes/logout'); //Allows logout to run
 process.env.NODE_ENV = 'production';
 
 //connects to mLab with mongoose
-mongoose.connect('mongodb://elisal:pdnlxx021@ds151662.mlab.com:51662/build-a-voting-app');
+mongoose.connect('mongodb://elisal:Pdnlxx021@ds021999.mlab.com:21999/build-a-voting-app');
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function () {
@@ -27,7 +27,7 @@ app.use(express.static('public'));
 app.use(session({
   cookieName: 'session',
   secret: 'asfasFHDFDHJDFJr5e4rwrsefzawq5',
-  duration: 24 * 60 * 60 * 1000,
+  duration: 24 * 60 * 60 * 1000
 }));
 
 app.set('port', process.env.PORT || process.env.IP );
